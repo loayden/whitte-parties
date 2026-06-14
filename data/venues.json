@@ -1,0 +1,8 @@
+[
+  { "slug": "coachella-valley", "name": "Coachella Valley Dunes", "lat": 33.6784, "lng": -116.2377, "description": "Wide open desert amphitheater" },
+  { "slug": "joshua-tree", "name": "Joshua Tree Outpost", "lat": 34.1341, "lng": -116.3131, "description": "Starlit desert node" },
+  { "slug": "scottsdale", "name": "Scottsdale Dune Club", "lat": 33.4942, "lng": -111.9261, "description": "Luxury desert lawns" },
+  { "slug": "las-vegas", "name": "Las Vegas Mirage", "lat": 36.1699, "lng": -115.1398, "description": "Neon oasis in the desert" },
+  { "slug": "miami", "name": "Miami Dune Garden", "lat": 25.7617, "lng": -80.1918, "description": "Coastal desert fusion venue" },
+  { "slug": "austin", "name": "Austin Dune Terrace", "lat": 30.2672, "lng": -97.7431, "description": "Texan desert soirée" }
+]

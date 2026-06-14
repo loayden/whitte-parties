@@ -1,0 +1,86 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic:
+        - button "Open menu" [ref=e4] [cursor=pointer]:
+          - img [ref=e5]
+        - link "BEDOUIN WHITE PARTiES home" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: BEDOUIN
+          - generic [ref=e8]: WHITE PARTiES
+        - button "Notifications" [ref=e9] [cursor=pointer]:
+          - img [ref=e10]
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - paragraph [ref=e16]: ARAB STYLE MOMENTS
+          - heading "Gallery" [level=1] [ref=e17]
+          - paragraph [ref=e18]: Lantern paths, woven tents, Turkish carpets, white attire, and desert night scenes for the BEDOUIN mood.
+        - generic [ref=e19]:
+          - button "Lantern Walk Lantern Walk Arrival Ritual" [active] [ref=e20] [cursor=pointer]:
+            - img "Lantern Walk" [ref=e21]
+            - generic [ref=e22]:
+              - strong [ref=e23]: Lantern Walk
+              - generic [ref=e24]: Arrival Ritual
+          - button "Woven Majlis Woven Majlis Interior" [ref=e25] [cursor=pointer]:
+            - img "Woven Majlis" [ref=e26]
+            - generic [ref=e27]:
+              - strong [ref=e28]: Woven Majlis
+              - generic [ref=e29]: Interior
+          - button "Carpet Dunes Carpet Dunes Turkish Textile Mood" [ref=e30] [cursor=pointer]:
+            - img "Carpet Dunes" [ref=e31]
+            - generic [ref=e32]:
+              - strong [ref=e33]: Carpet Dunes
+              - generic [ref=e34]: Turkish Textile Mood
+          - button "AlUla Lights AlUla Lights Night Scene" [ref=e35] [cursor=pointer]:
+            - img "AlUla Lights" [ref=e36]
+            - generic [ref=e37]:
+              - strong [ref=e38]: AlUla Lights
+              - generic [ref=e39]: Night Scene
+          - button "White Camp White Camp Private Venue" [ref=e40] [cursor=pointer]:
+            - img "White Camp" [ref=e41]
+            - generic [ref=e42]:
+              - strong [ref=e43]: White Camp
+              - generic [ref=e44]: Private Venue
+          - button "Desert Runway Desert Runway Guest Arrival" [ref=e45] [cursor=pointer]:
+            - img "Desert Runway" [ref=e46]
+            - generic [ref=e47]:
+              - strong [ref=e48]: Desert Runway
+              - generic [ref=e49]: Guest Arrival
+          - button "Red Majlis Red Majlis Bedouin Seating" [ref=e50] [cursor=pointer]:
+            - img "Red Majlis" [ref=e51]
+            - generic [ref=e52]:
+              - strong [ref=e53]: Red Majlis
+              - generic [ref=e54]: Bedouin Seating
+          - button "Night Entrance Night Entrance Lantern Path" [ref=e55] [cursor=pointer]:
+            - img "Night Entrance" [ref=e56]
+            - generic [ref=e57]:
+              - strong [ref=e58]: Night Entrance
+              - generic [ref=e59]: Lantern Path
+        - generic [ref=e84]:
+          - button "Close gallery image" [ref=e85] [cursor=pointer]:
+            - img [ref=e86]
+          - img "Lantern Walk" [ref=e89]
+          - generic [ref=e90]:
+            - strong [ref=e91]: Lantern Walk
+            - generic [ref=e92]: Arrival Ritual
+      - navigation "Primary" [ref=e60]:
+        - link "Home" [ref=e61] [cursor=pointer]:
+          - /url: /
+          - img [ref=e62]
+          - generic [ref=e65]: Home
+        - link "Events" [ref=e66] [cursor=pointer]:
+          - /url: /events
+          - img [ref=e67]
+          - generic [ref=e69]: Events
+        - link [ref=e70] [cursor=pointer]:
+          - /url: /gallery
+          - img [ref=e71]
+        - link "Tickets" [ref=e73] [cursor=pointer]:
+          - /url: /tickets
+          - img [ref=e74]
+          - generic [ref=e76]: Tickets
+        - link "Profile" [ref=e77] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e78]
+          - generic [ref=e81]: Profile
+  - alert [ref=e82]
