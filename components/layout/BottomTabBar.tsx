@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function BottomTabBar() {
@@ -17,12 +18,18 @@ export default function BottomTabBar() {
         const isActive = tab.href === '/' ? pathname === '/' : pathname.startsWith(tab.href)
 
         return (
-          <a key={tab.href} href={tab.href} aria-label={tab.label} className={`app-tab ${isActive ? 'active' : ''}`}>
+          <Link
+            key={tab.href}
+            href={tab.href}
+            aria-label={tab.label}
+            className={`app-tab ${isActive ? 'active' : ''}`}
+          >
             <svg className="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none">{tab.icon}</svg>
             <span>{tab.label}</span>
-          </a>
+          </Link>
         )
       })}
     </nav>
   )
 }
+
