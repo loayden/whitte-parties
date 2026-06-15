@@ -2,9 +2,10 @@
 import React from 'react'
 import IconButton from '../ui/IconButton'
 
+
 export default function TopBar() {
   return (
-    <header className="app-topbar">
+    <header className="app-topbar safe-top">
       <div className="app-topbar-inner">
         <div className="flex items-center gap-3">
           <div className="h-9 w-9 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(217,160,91,0.16)] flex items-center justify-center text-[11px] tracking-[0.28em] uppercase">BW</div>
