@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
@@ -221,10 +220,10 @@ export default function BedouinExperience({ view }: { view: View }) {
             const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
             const Icon = item.icon
             return (
-              <Link className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`} href={item.href} key={item.href}>
+              <a className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`} href={item.href} key={item.href}>
                 <Icon aria-hidden="true" strokeWidth={1.65} />
                 <span>{item.label}</span>
-              </Link>
+              </a>
             )
           })}
         </nav>
@@ -236,11 +235,11 @@ export default function BedouinExperience({ view }: { view: View }) {
 function TopChrome() {
   return (
     <header className="top-chrome">
-      <Link href="/" className="brand-lockup" aria-label="BEDOUIN WHITE PARTiES home">
+      <a href="/" className="brand-lockup" aria-label="BEDOUIN WHITE PARTiES home">
         <span className="brand-kicker">WHITE PARTY EXPERIENCE</span>
         <span>BEDOUIN</span>
         <small>WHITE PARTiES</small>
-      </Link>
+      </a>
     </header>
   )
 }
@@ -273,12 +272,12 @@ function HomeView() {
             ))}
           </div>
           <div className="hero-actions">
-            <Link className="primary-pill" href="/events">
+            <a className="primary-pill" href="/events">
               Explore Parties <ChevronRight size={21} />
-            </Link>
-            <Link className="secondary-pill hero-secondary" href="/gallery">
+            </a>
+            <a className="secondary-pill hero-secondary" href="/gallery">
               See Vibe
-            </Link>
+            </a>
           </div>
         </motion.div>
       </section>
@@ -351,9 +350,9 @@ function HomeView() {
           <h2>More Than A Party</h2>
           <span className="ornament-line" />
           <p>An immersive production that connects culture, people, music, food, and timeless moments.</p>
-          <Link className="secondary-pill" href="/gallery">
+          <a className="secondary-pill" href="/gallery">
             Discover More <ChevronRight size={18} />
-          </Link>
+          </a>
         </div>
         <div className="feature-grid">
           <Feature icon={Sparkles} title="Arabian Inspired" text="Authentic decor and atmosphere" />
@@ -397,9 +396,9 @@ function HomeView() {
         <div>
           <p className="bronze-line">REAL MOMENTS</p>
           <h2>See the atmosphere before you book.</h2>
-          <Link className="secondary-pill" href="/gallery">
+          <a className="secondary-pill" href="/gallery">
             Open Gallery <ChevronRight size={18} />
-          </Link>
+          </a>
         </div>
         <div className="preview-mosaic">
           {[photos.goldenDance, photos.performerNight, photos.groupNight, photos.daytimeMajlis].map((image, index) => (
@@ -412,9 +411,9 @@ function HomeView() {
         <Gem size={34} strokeWidth={1.45} />
         <h2>White attire. Warm hospitality. A night people remember.</h2>
         <p>Reserve the next BEDOUIN experience or explore the gallery to understand the mood, crowd, food, music, and service standard.</p>
-        <Link className="primary-pill" href="/events">
+        <a className="primary-pill" href="/events">
           View Events <ChevronRight size={21} />
-        </Link>
+        </a>
       </section>
     </>
   )
@@ -573,9 +572,9 @@ function SectionTitle({ title, href }: { title: string; href: string }) {
   return (
     <div className="section-title">
       <h2>{title}</h2>
-      <Link href={href}>
+      <a href={href}>
         See all <ChevronRight size={14} />
-      </Link>
+      </a>
     </div>
   )
 }
