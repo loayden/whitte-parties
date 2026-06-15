@@ -146,6 +146,20 @@ const partyFlow = [
   { step: '04', title: 'Night Lounge', text: 'Moonlit seating, private groups, premium service, and a slower luxury close.' }
 ]
 
+const heroSignals = ['Arabian lounge design', 'White attire', 'Live oud + DJ', 'Golden hour entry']
+
+const experienceMetrics = [
+  { value: '04', label: 'curated cities' },
+  { value: '360°', label: 'immersive production' },
+  { value: 'VIP', label: 'majlis service' }
+]
+
+const ritualCards = [
+  { eyebrow: '01 / Arrival', title: 'Lantern-lit check-in', text: 'Guests enter through a warm welcome ritual, wristbands, portraits, and white styling cues.' },
+  { eyebrow: '02 / Energy', title: 'Desert club pulse', text: 'Deep house, percussion, violin, and crowd circles build the night without losing the luxury tone.' },
+  { eyebrow: '03 / Hospitality', title: 'Majlis afterglow', text: 'Low seating, premium tables, grilled stations, and moonlit service keep guests lingering.' }
+]
+
 const nav = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/events', label: 'Events', icon: CalendarDays },
@@ -235,17 +249,47 @@ function HomeView() {
   return (
     <>
       <section className="hero-stage">
+        <div className="hero-orbit" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="hero-arabesque" aria-hidden="true" />
         <div className="hero-image" style={{ backgroundImage: `url(${photos.tentSuite})` }} />
         <div className="hero-wash" />
-        <div className="hero-copy">
+        <motion.div
+          className="hero-copy"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className="bronze-line">NOT JUST PARTIES,</p>
           <h1>A LIFESTYLE IN WHITE</h1>
           <span className="ornament-line" />
           <p>Premium beach and desert-style gatherings with white dress code, majlis lounges, live music, elevated food, and a community that comes ready to celebrate.</p>
-          <Link className="primary-pill" href="/events">
-            Explore Parties <ChevronRight size={21} />
-          </Link>
-        </div>
+          <div className="hero-tags" aria-label="Experience highlights">
+            {heroSignals.map((signal) => (
+              <span key={signal}>{signal}</span>
+            ))}
+          </div>
+          <div className="hero-actions">
+            <Link className="primary-pill" href="/events">
+              Explore Parties <ChevronRight size={21} />
+            </Link>
+            <Link className="secondary-pill hero-secondary" href="/gallery">
+              See Vibe
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="experience-dashboard" aria-label="BEDOUIN experience metrics">
+        {experienceMetrics.map((metric) => (
+          <article key={metric.label}>
+            <strong>{metric.value}</strong>
+            <span>{metric.label}</span>
+          </article>
+        ))}
       </section>
 
       <section className="home-editorial">
@@ -259,6 +303,26 @@ function HomeView() {
         </div>
         <div className="editorial-media">
           <img src={photos.crowdWhite} alt="Guests dancing at a BEDOUIN white beach party" fetchPriority="high" decoding="async" />
+          <div className="media-caption">
+            <Sparkles size={16} />
+            <span>Modern Arab hospitality meets beach-club energy</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="ritual-deck" aria-label="Signature ritual journey">
+        <div className="ritual-head">
+          <p className="bronze-line">THE RITUAL</p>
+          <h2>Mesmerizing moments from first step to last song.</h2>
+        </div>
+        <div className="ritual-cards">
+          {ritualCards.map((card) => (
+            <article key={card.title}>
+              <span>{card.eyebrow}</span>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -379,6 +443,12 @@ function EventsView() {
         </div>
       </div>
 
+      <div className="event-vibe-strip" aria-label="Event experience pillars">
+        <span>Moonlit majlis seating</span>
+        <span>Live music rituals</span>
+        <span>Premium table service</span>
+      </div>
+
       <div className="filter-row" role="tablist" aria-label="Event filters">
         {(['All', 'VIP', 'Desert', 'White'] as EventCategory[]).map((item) => (
           <button className={filter === item ? 'selected' : ''} key={item} onClick={() => setFilter(item)} type="button">
@@ -405,6 +475,11 @@ function GalleryView() {
         <p className="bronze-line">REAL BEDOUIN MOMENTS</p>
         <h1>Gallery</h1>
         <p>White attire, beach majlis lounges, live performances, food stations, premium bars, and the crowd energy that defines the experience.</p>
+        <div className="gallery-badges" aria-label="Gallery categories">
+          <span>Atmosphere</span>
+          <span>Hospitality</span>
+          <span>Dance Rituals</span>
+        </div>
       </div>
       <div className="gallery-grid">
         {gallery.map((item, index) => (
@@ -538,6 +613,11 @@ function EventCard({ event, compact = false }: { event: (typeof events)[number];
           <span>{formatTime(event.date)}</span>
         </div>
         <p>{event.description}</p>
+        <div className="party-sensory">
+          <span>Lanterns</span>
+          <span>Majlis</span>
+          <span>DJ</span>
+        </div>
         <div className="party-meta">
           <span>{event.tag}</span>
           <span>{event.price}</span>
