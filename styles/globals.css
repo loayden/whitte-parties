@@ -167,10 +167,9 @@ button {
   text-align: center;
   color: var(--bronze);
   padding: 8px 16px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 252, 247, 0.95), rgba(249, 244, 234, 0.9));
-  box-shadow: 0 8px 24px rgba(70, 48, 26, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .brand-kicker {
