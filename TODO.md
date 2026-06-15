@@ -1,0 +1,7 @@
+- [ ] Update `components/BedouinExperience.tsx`
+  - [ ] Replace Home hero/editorial text with Bedoun White Party 2025 story (1500+ guests, unity/community, Arabic heritage)
+  - [ ] Remove Home “Upcoming Parties” event strip
+  - [ ] Add “19/20 Sept” section with photos
+  - [ ] Add video section using `/vibeup/recap2final.mp4`
+  - [ ] Replace `/events` page (EventsView) to show only Bedoun White Party 2025 (19/20 Sept), removing multi-event list/filter/cards
+- [ ] Run dev server / sanity-check build (manual verification)

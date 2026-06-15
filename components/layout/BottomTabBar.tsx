@@ -12,12 +12,13 @@ export default function BottomTabBar() {
   ]
 
   return (
-    <nav aria-label="Main navigation" className="app-tabbar">
+    <nav aria-label="Main navigation" className="bottom-nav">
       {tabs.map((tab) => {
         const isActive = tab.href === '/' ? pathname === '/' : pathname.startsWith(tab.href)
+        const isFeatured = tab.label === 'Gallery'
 
         return (
-          <a key={tab.href} href={tab.href} aria-label={tab.label} className={`app-tab ${isActive ? 'active' : ''}`}>
+          <a key={tab.href} href={tab.href} aria-label={tab.label} className={`nav-item ${isActive ? 'active' : ''} ${isFeatured ? 'featured' : ''}`}>
             <svg className="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none">{tab.icon}</svg>
             <span>{tab.label}</span>
           </a>

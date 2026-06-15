@@ -1,5 +1,4 @@
 'use client'
-
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -15,6 +14,9 @@ import {
   Music2,
   Sparkles,
   UsersRound,
+  Eye,
+  Target,
+  PlayCircle,
   X
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
@@ -44,58 +46,22 @@ const photos = {
   beachPortrait: '/vibeup/vibeup-106.jpg'
 }
 
+const recapVideo = '/vibeup/recap2final.mp4'
+
 const events = [
   {
-    title: 'Desert Nights',
-    category: 'VIP',
-    city: 'Miami, FL',
-    date: '2026-09-19T21:00:00-04:00',
-    timeLabel: 'Sat, Sep 19, 9:00 PM',
-    day: '19',
+    title: 'BEDOUIN White Party',
+    category: 'White',
+    city: 'California Coast',
+    date: '2026-09-19T18:00:00-07:00',
+    endDate: '2026-09-20T23:00:00-07:00',
+    timeLabel: 'Sat–Sun, Sep 19–20',
+    day: '19–20',
     month: 'SEP',
     image: photos.crowdWhite,
-    tag: 'VIP Experience',
-    price: '$250',
-    description: 'A sunset-to-midnight white party with beachside majlis seating, live percussion, DJ sets, and premium table service.'
-  },
-  {
-    title: 'White Oasis',
-    category: 'White',
-    city: 'Los Angeles, CA',
-    date: '2026-10-02T20:30:00-07:00',
-    timeLabel: 'Fri, Oct 2, 8:30 PM',
-    day: '02',
-    month: 'OCT',
-    image: photos.tentSuite,
-    tag: 'White Attire',
-    price: '$190',
-    description: 'A refined daytime escape built around private tent lounges, coastal views, curated vendors, and elegant white styling.'
-  },
-  {
-    title: 'Bedouin Social',
-    category: 'Desert',
-    city: 'Coachella, CA',
-    date: '2026-11-05T18:00:00-08:00',
-    timeLabel: 'Thu, Nov 5, 6:00 PM',
-    day: '05',
-    month: 'NOV',
-    image: photos.circleDance,
-    tag: 'Elite Community',
-    price: '$320',
-    description: 'A community-led dance circle with live drums, Mediterranean food stations, and photo moments made for the golden hour.'
-  },
-  {
-    title: 'Golden Majlis',
-    category: 'VIP',
-    city: 'Scottsdale, AZ',
-    date: '2026-12-10T19:30:00-07:00',
-    timeLabel: 'Thu, Dec 10, 7:30 PM',
-    day: '10',
-    month: 'DEC',
-    image: photos.nightMajlis,
-    tag: 'Dinner Ritual',
-    price: '$280',
-    description: 'A moonlit lounge experience with low seating, lanterns, grilled service, live entertainment, and slow luxury hospitality.'
+    tag: 'Annual Celebration',
+    price: 'Get Notified',
+    description: 'Our annual cultural beach festival returns to California\u2019s most breathtaking coastline — two days of white-attire elegance, live music, art, and Arabic-inspired hospitality bringing together communities from around the world.'
   }
 ]
 
@@ -154,17 +120,14 @@ const nav = [
 
 function useCountdown(target: string) {
   const [now, setNow] = useState(() => Date.now())
-
   useEffect(() => {
     const id = window.setInterval(() => setNow(Date.now()), 1000)
     return () => window.clearInterval(id)
   }, [])
-
   const diff = Math.max(0, new Date(target).getTime() - now)
   const days = Math.floor(diff / 86400000)
   const hours = Math.floor((diff % 86400000) / 3600000)
   const minutes = Math.floor((diff % 3600000) / 60000)
-
   return `${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m`
 }
 
@@ -180,7 +143,6 @@ function formatTime(date: string) {
 
 export default function BedouinExperience({ view }: { view: View }) {
   const pathname = usePathname()
-
   return (
     <main className="bedouin-root">
       <div className="ambient ambient-one" />
@@ -243,7 +205,7 @@ function HomeView() {
           <span className="ornament-line" />
           <p>Premium beach and desert-style gatherings with white dress code, majlis lounges, live music, elevated food, and a community that comes ready to celebrate.</p>
           <Link className="primary-pill" href="/events">
-            Explore Parties <ChevronRight size={21} />
+            Explore the Party <ChevronRight size={21} />
           </Link>
         </div>
       </section>
@@ -262,9 +224,86 @@ function HomeView() {
         </div>
       </section>
 
-      <SectionTitle title="Upcoming Parties" href="/events" />
+      <section className="about-section">
+        <div className="about-head">
+          <p className="bronze-line">ABOUT BEDOUIN</p>
+          <h2>A cultural bridge on the sand.</h2>
+        </div>
+        <div className="about-copy">
+          <p>
+            Every September, we bring the world together for an extraordinary celebration on California&rsquo;s most breathtaking coasts.
+            Launching its inaugural edition in 2025, the BEDOUIN White Party made a massive wave, welcoming over
+            <strong> 1,500 guests</strong> from diverse backgrounds and nationalities to celebrate unity and community.
+          </p>
+          <p>
+            This is more than just a beach party — it is a vibrant, immersive cultural bridge. Our festival is a dedicated space
+            where global diversity meets the rich tapestry of Middle Eastern heritage. Through captivating music, art, and shared
+            experiences, we showcase the authentic beauty and warmth of Arabic cultures to the world.
+          </p>
+          <p>
+            We gather on the sand to create unforgettable memories, break boundaries, and foster genuine human connection in an
+            atmosphere full of energy, joy, and peace.
+          </p>
+        </div>
+        <div className="about-media">
+          <img src={photos.groupNight} alt="Guests from around the world at the 2025 BEDOUIN White Party" loading="lazy" decoding="async" />
+          <div className="stat-chip">
+            <strong>1,500+</strong>
+            <span>Guests in 2025</span>
+          </div>
+        </div>
+        <Link className="primary-pill" href="/events">
+          Join Us This September &mdash; Get Notified <ChevronRight size={21} />
+        </Link>
+      </section>
+
+      <section className="vision-mission">
+        <div className="vm-head">
+          <p className="bronze-line">VISION & MISSION</p>
+          <h2>Where heritage meets the world.</h2>
+        </div>
+        <div className="vm-grid">
+          <article className="vm-card">
+            <Eye size={26} strokeWidth={1.6} />
+            <h3>Our Vision</h3>
+            <p>
+              To become the premier cultural beach festival in the United States and a leading global destination that
+              seamlessly blends diverse communities while celebrating Arabic heritage in a modern, inclusive, and upscale setting.
+            </p>
+          </article>
+          <article className="vm-card">
+            <Target size={26} strokeWidth={1.6} />
+            <h3>Our Mission</h3>
+            <p>
+              To create an inspiring annual gathering that unites people of all backgrounds through the universal languages of
+              art and music — presenting the true essence, joy, and hospitality of Arabic culture, fostering mutual understanding,
+              and building lasting cross-cultural connections.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="recap-section">
+        <div className="recap-head">
+          <p className="bronze-line">2025 RECAP</p>
+          <h2>Relive the night.</h2>
+          <p>A look back at the energy, the crowd, and the moments that made our first BEDOUIN White Party unforgettable.</p>
+        </div>
+        <div className="recap-video">
+          <video controls preload="metadata" poster={photos.crowdWhite} playsInline>
+            <source src={recapVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="recap-play-badge">
+            <PlayCircle size={20} strokeWidth={1.6} />
+            <span>Watch the 2025 Recap</span>
+          </div>
+        </div>
+      </section>
+
+      <SectionTitle title="This September" href="/events" />
       <div className="event-strip">
-        {events.slice(0, 3).map((event) => (
+        {events.map((event) => (
           <EventCard event={event} key={event.title} compact />
         ))}
       </div>
@@ -349,7 +388,7 @@ function HomeView() {
         <h2>White attire. Warm hospitality. A night people remember.</h2>
         <p>Reserve the next BEDOUIN experience or explore the gallery to understand the mood, crowd, food, music, and service standard.</p>
         <Link className="primary-pill" href="/events">
-          View Events <ChevronRight size={21} />
+          Join Us This September &mdash; Get Notified <ChevronRight size={21} />
         </Link>
       </section>
     </>
@@ -357,20 +396,14 @@ function HomeView() {
 }
 
 function EventsView() {
-  const [filter, setFilter] = useState<EventCategory>('All')
   const featuredCountdown = useCountdown(events[0].date)
-  const filtered = useMemo(
-    () => events.filter((event) => filter === 'All' || event.category === filter),
-    [filter]
-  )
-
   return (
     <section className="page-pad">
       <div className="page-hero dark" style={{ backgroundImage: `url(${photos.performerNight})` }}>
         <div>
-          <p className="bronze-line">NEXT GATHERING</p>
+          <p className="bronze-line">THE GATHERING</p>
           <h1>Events & Time</h1>
-          <p>Every night is curated with white dress code, private tables, arrival rituals, and a clear countdown.</p>
+          <p>One weekend, curated with white dress code, private tables, arrival rituals, and a clear countdown.</p>
         </div>
         <div className="time-card">
           <Clock3 size={22} />
@@ -379,26 +412,35 @@ function EventsView() {
         </div>
       </div>
 
-      <div className="filter-row" role="tablist" aria-label="Event filters">
-        {(['All', 'VIP', 'Desert', 'White'] as EventCategory[]).map((item) => (
-          <button className={filter === item ? 'selected' : ''} key={item} onClick={() => setFilter(item)} type="button">
-            {item}
-          </button>
-        ))}
-      </div>
-
       <div className="event-list">
-        {filtered.map((event) => (
+        {events.map((event) => (
           <EventCard event={event} key={event.title} />
         ))}
       </div>
+
+      <section className="recap-section page-recap">
+        <div className="recap-head">
+          <p className="bronze-line">2025 RECAP</p>
+          <h2>Relive the night.</h2>
+          <p>A look back at the energy, the crowd, and the moments that made our first BEDOUIN White Party unforgettable.</p>
+        </div>
+        <div className="recap-video">
+          <video controls preload="metadata" poster={photos.crowdWhite} playsInline>
+            <source src={recapVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="recap-play-badge">
+            <PlayCircle size={20} strokeWidth={1.6} />
+            <span>Watch the 2025 Recap</span>
+          </div>
+        </div>
+      </section>
     </section>
   )
 }
 
 function GalleryView() {
   const [selected, setSelected] = useState<(typeof gallery)[number] | null>(null)
-
   return (
     <section className="page-pad">
       <div className="gallery-head">
@@ -517,7 +559,6 @@ function Feature({ icon: Icon, title, text }: { icon: any; title: string; text: 
 
 function EventCard({ event, compact = false }: { event: (typeof events)[number]; compact?: boolean }) {
   const [day, month] = [event.day, event.month]
-
   return (
     <article className={`party-card ${compact ? 'compact' : ''}`}>
       <div className="party-image">
@@ -542,7 +583,7 @@ function EventCard({ event, compact = false }: { event: (typeof events)[number];
           <span>{event.tag}</span>
           <span>{event.price}</span>
         </div>
-        <small>{compact ? 'View details' : 'Limited spots available'}</small>
+        <small>{compact ? 'View details' : 'Get Notified for September'}</small>
       </div>
     </article>
   )
