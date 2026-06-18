@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function BottomTabBar() {
@@ -7,7 +8,7 @@ export default function BottomTabBar() {
 
   const tabs = [
     { href: '/', label: 'Home', icon: <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1" /> },
-    { href: '/map', label: 'Map', icon: <path d="M3 12h18" stroke="currentColor" strokeWidth="1" /> },
+    { href: '/events', label: 'Events', icon: <path d="M3 12h18" stroke="currentColor" strokeWidth="1" /> },
     { href: '/gallery', label: 'Gallery', icon: <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1" /> },
   ]
 
@@ -18,10 +19,10 @@ export default function BottomTabBar() {
         const isFeatured = tab.label === 'Gallery'
 
         return (
-          <a key={tab.href} href={tab.href} aria-label={tab.label} className={`nav-item ${isActive ? 'active' : ''} ${isFeatured ? 'featured' : ''}`}>
+          <Link key={tab.href} href={tab.href} aria-label={tab.label} className={`nav-item ${isActive ? 'active' : ''} ${isFeatured ? 'featured' : ''}`}>
             <svg className="w-5 h-5 mb-0.5" viewBox="0 0 24 24" fill="none">{tab.icon}</svg>
             <span>{tab.label}</span>
-          </a>
+          </Link>
         )
       })}
     </nav>
