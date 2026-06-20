@@ -6,8 +6,6 @@ type EventItem = {
   title: string
   city?: string
   date?: string
-  price?: number
-  priceFrom?: number
   badge?: string
   scene?: string
 }
@@ -69,7 +67,6 @@ const css = `
   .card-media::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-130%);transition:transform .9s var(--ease-enter)}
   .card:hover .card-media::after,.card.tilt .card-media::after{transform:translateX(130%)}
   .card-badge{position:absolute;top:10px;left:10px;z-index:2;font-family:'Reem Kufi',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(11,10,8,.5);border:1px solid rgba(217,160,91,.3);color:var(--linen)}
-  .card-price{position:absolute;top:10px;right:10px;z-index:2;font-family:'Space Mono',monospace;font-size:11px;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(11,10,8,.55);border:1px solid rgba(217,160,91,.25);color:var(--amber)}
   .card-body{padding:12px 14px 14px}
   .card-title{font-family:'Fraunces',serif;font-weight:600;font-size:15px;line-height:1.25;margin-bottom:6px}
   .card-meta{font-size:11px;color:rgba(248,243,232,.6);margin-bottom:8px}
@@ -219,7 +216,7 @@ export default function StaticHome({ events = [] }: { events?: EventItem[] }) {
             <h1 className="hero-title">Mirage Nights</h1>
             <div className="hero-meta">
               <span>Tonight · 9:00 PM</span>
-              <span className="mono">From $250</span>
+              <span className="mono">RSVP details soon</span>
             </div>
             <p className="hero-desc">An open-air majlis beneath a thousand stars — live oud, fire dancers, and a midnight feast under woven silk canopies.</p>
             <button className="btn-primary">Reserve Your Spot
@@ -239,7 +236,6 @@ export default function StaticHome({ events = [] }: { events?: EventItem[] }) {
                 <article className="card" key={`${key}-${idx}`}>
                   <div className={`card-media scene-${e.scene ?? 'dusk'}`}>
                     <span className="card-badge">{e.badge ?? ''}</span>
-                    <span className="card-price">${e.price ?? e.priceFrom ?? '—'}</span>
                     <span className="moon" />
                     <span className="star-mark" dangerouslySetInnerHTML={{ __html: STAR }} />
                   </div>

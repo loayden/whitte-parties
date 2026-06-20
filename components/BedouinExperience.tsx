@@ -59,7 +59,6 @@ const events = [
     month: 'SEP',
     image: photos.crowdWhite,
     tag: 'Annual Celebration',
-    price: 'Get Notified',
     description: 'Our annual cultural beach festival returns to California\u2019s most breathtaking coastline — two days of white-attire elegance, live music, art, and Arabic-inspired hospitality bringing together communities from around the world.'
   }
 ]
@@ -597,7 +596,7 @@ function EventCard({ event, compact = false }: { event: (typeof events)[number];
         <p>{event.description}</p>
         <div className="party-meta">
           <span>{event.tag}</span>
-          <span>{event.price}</span>
+          <span>{event.timeLabel}</span>
         </div>
         <Link className="event-action" href={compact ? '/events' : '/gallery'} aria-label={`${compact ? 'View details for' : 'View gallery for'} ${event.title}`}>
           {compact ? 'View details' : 'See the Atmosphere'}

@@ -61,7 +61,7 @@ export default function EventStory({ event }: { event: any }) {
       <div className="fixed left-0 right-0 bottom-4 px-4">
         <div className="max-w-4xl mx-auto glass rounded-pill p-3 flex items-center justify-between">
           <div>
-            <div className="font-mono text-sm">From ${event.priceFrom}</div>
+            <div className="font-mono text-sm">RSVP details soon</div>
             <div className="text-sm">{event.city}</div>
           </div>
           <div>
