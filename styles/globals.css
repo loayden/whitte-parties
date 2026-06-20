@@ -1445,22 +1445,7 @@ p {
   pointer-events: none;
 }
 
-.nav-item.featured {
-  width: min(86px, 100%);
-  min-height: 86px;
-  aspect-ratio: 1;
-  margin: -32px auto 0;
-  border-radius: 999px;
-  color: #fff8ed;
-  background: linear-gradient(135deg, var(--bronze), #d9a360);
-  box-shadow: 0 16px 34px rgba(166, 105, 47, 0.32), 0 0 0 6px rgba(255, 252, 247, 0.8);
-}
-
-.nav-item.featured span {
-  display: none;
-}
-
-.nav-item.active:not(.featured) {
+.nav-item.active {
   color: var(--bronze-dark);
   background: rgba(182, 128, 70, 0.1);
 }

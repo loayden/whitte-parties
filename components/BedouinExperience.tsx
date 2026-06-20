@@ -126,7 +126,7 @@ const experienceBrief = [
 const nav = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal, featured: true }
+  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal }
 ]
 
 function useCountdown(target: string) {
@@ -185,7 +185,9 @@ export default function BedouinExperience({ view }: { view: View }) {
             bottom: 'max(12px, env(safe-area-inset-bottom))',
             zIndex: 1000,
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gap: 10,
+            pointerEvents: 'auto'
           }}
         >
           {nav.map((item) => {
@@ -193,9 +195,20 @@ export default function BedouinExperience({ view }: { view: View }) {
             const Icon = item.icon
             return (
               <Link
-                className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`}
+                aria-label={item.label}
+                className={`nav-item ${active ? 'active' : ''}`}
                 href={item.href}
                 key={item.href}
+                style={{
+                  position: 'relative',
+                  zIndex: 1,
+                  width: '100%',
+                  minHeight: 56,
+                  display: 'grid',
+                  placeItems: 'center',
+                  alignContent: 'center',
+                  pointerEvents: 'auto'
+                }}
               >
                 <Icon aria-hidden="true" strokeWidth={1.65} />
                 <span>{item.label}</span>
