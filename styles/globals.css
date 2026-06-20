@@ -1371,10 +1371,10 @@ p {
   left: 18px;
   right: 18px;
   bottom: var(--bottom-nav-offset);
-  z-index: 30;
+  z-index: 1000;
   min-height: 72px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: center;
   gap: 10px;
   border-radius: 30px;
@@ -1386,6 +1386,7 @@ p {
   -webkit-backdrop-filter: blur(24px);
   pointer-events: auto;
   transform: translateZ(0);
+  isolation: isolate;
 }
 
 .nav-item {
@@ -1398,25 +1399,30 @@ p {
   gap: 4px;
   border-radius: 20px;
   color: rgba(48, 47, 43, 0.78);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.07em;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-item svg {
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
+}
+
+.nav-item svg,
+.nav-item span {
+  pointer-events: none;
 }
 
 .nav-item.featured {
-  width: min(86px, 100%);
-  min-height: 86px;
+  width: min(76px, 100%);
+  min-height: 76px;
   aspect-ratio: 1;
-  margin: -32px auto 0;
+  margin: -26px auto 0;
   border-radius: 999px;
   color: #fff8ed;
   background: linear-gradient(135deg, var(--bronze), #d9a360);
@@ -1430,6 +1436,22 @@ p {
 .nav-item.active:not(.featured) {
   color: var(--bronze-dark);
   background: rgba(182, 128, 70, 0.1);
+}
+
+.event-action {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--bronze-dark);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.event-action svg {
+  flex: 0 0 auto;
 }
 
 @media (min-width: 860px) {

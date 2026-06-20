@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   CalendarDays,
@@ -10,6 +10,7 @@ import {
   Gem,
   GalleryHorizontal,
   Home,
+  Ticket,
   MapPin,
   Music2,
   Sparkles,
@@ -115,7 +116,9 @@ const partyFlow = [
 const nav = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal, featured: true }
+  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal, featured: true },
+  { href: '/tickets', label: 'Tickets', icon: Ticket },
+  { href: '/profile', label: 'Profile', icon: Crown }
 ]
 
 function useCountdown(target: string) {
@@ -143,6 +146,14 @@ function formatTime(date: string) {
 
 export default function BedouinExperience({ view }: { view: View }) {
   const pathname = usePathname()
+  const router = useRouter()
+
+  function handleTouchNavigation(event: React.PointerEvent<HTMLAnchorElement>, href: string) {
+    if (event.pointerType !== 'touch') return
+    event.preventDefault()
+    router.push(href)
+  }
+
   return (
     <main className="bedouin-root">
       <div className="ambient ambient-one" />
@@ -162,6 +173,7 @@ export default function BedouinExperience({ view }: { view: View }) {
             {view === 'events' && <EventsView />}
             {view === 'gallery' && <GalleryView />}
             {view === 'tickets' && <TicketsView />}
+            {view === 'profile' && <ProfileView />}
           </motion.div>
         </AnimatePresence>
         <nav className="bottom-nav" aria-label="Primary">
@@ -169,7 +181,12 @@ export default function BedouinExperience({ view }: { view: View }) {
             const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
             const Icon = item.icon
             return (
-              <Link className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`} href={item.href} key={item.href}>
+              <Link
+                className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`}
+                href={item.href}
+                key={item.href}
+                onPointerUp={(event) => handleTouchNavigation(event, item.href)}
+              >
                 <Icon aria-hidden="true" strokeWidth={1.65} />
                 <span>{item.label}</span>
               </Link>
@@ -583,7 +600,10 @@ function EventCard({ event, compact = false }: { event: (typeof events)[number];
           <span>{event.tag}</span>
           <span>{event.price}</span>
         </div>
-        <small>{compact ? 'View details' : 'Get Notified for September'}</small>
+        <Link className="event-action" href="/tickets" aria-label={`${compact ? 'View details for' : 'Get notified for'} ${event.title}`}>
+          {compact ? 'View details' : 'Get Notified for September'}
+          <ChevronRight size={14} aria-hidden="true" />
+        </Link>
       </div>
     </article>
   )
