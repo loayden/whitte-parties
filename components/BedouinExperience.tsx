@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   CalendarDays,
@@ -154,13 +154,6 @@ function formatTime(date: string) {
 
 export default function BedouinExperience({ view }: { view: View }) {
   const pathname = usePathname()
-  const router = useRouter()
-
-  function handleTouchNavigation(event: React.PointerEvent<HTMLAnchorElement>, href: string) {
-    if (event.pointerType !== 'touch') return
-    event.preventDefault()
-    router.push(href)
-  }
 
   return (
     <main className="bedouin-root">
@@ -182,7 +175,19 @@ export default function BedouinExperience({ view }: { view: View }) {
             {view === 'gallery' && <GalleryView />}
           </motion.div>
         </AnimatePresence>
-        <nav className="bottom-nav" aria-label="Primary">
+        <nav
+          className="bottom-nav"
+          aria-label="Primary"
+          style={{
+            position: 'fixed',
+            left: 18,
+            right: 18,
+            bottom: 'max(12px, env(safe-area-inset-bottom))',
+            zIndex: 1000,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+          }}
+        >
           {nav.map((item) => {
             const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
             const Icon = item.icon
@@ -191,7 +196,6 @@ export default function BedouinExperience({ view }: { view: View }) {
                 className={`nav-item ${active ? 'active' : ''} ${item.featured ? 'featured' : ''}`}
                 href={item.href}
                 key={item.href}
-                onPointerUp={(event) => handleTouchNavigation(event, item.href)}
               >
                 <Icon aria-hidden="true" strokeWidth={1.65} />
                 <span>{item.label}</span>
