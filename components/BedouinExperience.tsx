@@ -161,20 +161,11 @@ export default function BedouinExperience({ view }: { view: View }) {
       <div className="ambient ambient-two" />
       <div className="phone-shell">
         <TopChrome />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={view}
-            initial={{ opacity: 0, y: 18, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -12, filter: 'blur(8px)' }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="screen-scroll"
-          >
-            {view === 'home' && <HomeView />}
-            {view === 'events' && <EventsView />}
-            {view === 'gallery' && <GalleryView />}
-          </motion.div>
-        </AnimatePresence>
+        <div className="screen-scroll">
+          {view === 'home' && <HomeView />}
+          {view === 'events' && <EventsView />}
+          {view === 'gallery' && <GalleryView />}
+        </div>
         <nav
           className="bottom-nav"
           aria-label="Primary"

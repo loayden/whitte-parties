@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
-import PageTransition from '@/components/motion/PageTransition'
 
 export const viewport = {
   width: 'device-width',
@@ -19,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <PageTransition>{children}</PageTransition>
+        {children}
       </body>
     </html>
   )
