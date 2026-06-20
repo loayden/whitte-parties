@@ -10,7 +10,6 @@ import {
   Gem,
   GalleryHorizontal,
   Home,
-  Ticket,
   MapPin,
   Music2,
   Sparkles,
@@ -20,10 +19,9 @@ import {
   PlayCircle,
   X
 } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-type View = 'home' | 'events' | 'gallery' | 'tickets' | 'profile'
-type EventCategory = 'All' | 'VIP' | 'Desert' | 'White'
+type View = 'home' | 'events' | 'gallery'
 
 const photos = {
   nightMajlis: '/vibeup/vibeup-384.jpg',
@@ -113,12 +111,22 @@ const partyFlow = [
   { step: '04', title: 'Night Lounge', text: 'Moonlit seating, private groups, premium service, and a slower luxury close.' }
 ]
 
+const heroProof = [
+  { value: '1,500+', label: 'guests in 2025' },
+  { value: '2 days', label: 'coastal festival' },
+  { value: 'White', label: 'signature dress code' }
+]
+
+const experienceBrief = [
+  { title: 'Arrival', text: 'Guided check-in, welcome moments, and a polished first impression.' },
+  { title: 'Atmosphere', text: 'Majlis lounges, coastal staging, white styling, and curated lighting.' },
+  { title: 'Energy', text: 'DJ sets, live musicians, food stations, and social spaces built to flow.' }
+]
+
 const nav = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal, featured: true },
-  { href: '/tickets', label: 'Tickets', icon: Ticket },
-  { href: '/profile', label: 'Profile', icon: Crown }
+  { href: '/gallery', label: 'Gallery', icon: GalleryHorizontal, featured: true }
 ]
 
 function useCountdown(target: string) {
@@ -172,8 +180,6 @@ export default function BedouinExperience({ view }: { view: View }) {
             {view === 'home' && <HomeView />}
             {view === 'events' && <EventsView />}
             {view === 'gallery' && <GalleryView />}
-            {view === 'tickets' && <TicketsView />}
-            {view === 'profile' && <ProfileView />}
           </motion.div>
         </AnimatePresence>
         <nav className="bottom-nav" aria-label="Primary">
@@ -221,9 +227,22 @@ function HomeView() {
           <h1>A LIFESTYLE IN WHITE</h1>
           <span className="ornament-line" />
           <p>Premium beach and desert-style gatherings with white dress code, majlis lounges, live music, elevated food, and a community that comes ready to celebrate.</p>
-          <Link className="primary-pill" href="/events">
-            Explore the Party <ChevronRight size={21} />
-          </Link>
+          <div className="hero-actions">
+            <Link className="primary-pill" href="/events">
+              Explore Events <ChevronRight size={21} />
+            </Link>
+            <Link className="secondary-pill hero-secondary" href="/gallery">
+              View Gallery
+            </Link>
+          </div>
+          <div className="hero-proof" aria-label="BEDOUIN experience highlights">
+            {heroProof.map((item) => (
+              <span key={item.label}>
+                <strong>{item.value}</strong>
+                {item.label}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -403,9 +422,9 @@ function HomeView() {
       <section className="closing-cta">
         <Gem size={34} strokeWidth={1.45} />
         <h2>White attire. Warm hospitality. A night people remember.</h2>
-        <p>Reserve the next BEDOUIN experience or explore the gallery to understand the mood, crowd, food, music, and service standard.</p>
+        <p>Explore the next BEDOUIN experience or open the gallery to understand the mood, crowd, food, music, and service standard.</p>
         <Link className="primary-pill" href="/events">
-          Join Us This September &mdash; Get Notified <ChevronRight size={21} />
+          Join Us This September <ChevronRight size={21} />
         </Link>
       </section>
     </>
@@ -434,6 +453,16 @@ function EventsView() {
           <EventCard event={event} key={event.title} />
         ))}
       </div>
+
+      <section className="event-brief" aria-label="Event experience brief">
+        {experienceBrief.map((item, index) => (
+          <article key={item.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </section>
 
       <section className="recap-section page-recap">
         <div className="recap-head">
@@ -464,6 +493,12 @@ function GalleryView() {
         <p className="bronze-line">REAL BEDOUIN MOMENTS</p>
         <h1>Gallery</h1>
         <p>White attire, beach majlis lounges, live performances, food stations, premium bars, and the crowd energy that defines the experience.</p>
+      </div>
+      <div className="gallery-intro-strip" aria-label="Gallery categories">
+        <span>Arrival</span>
+        <span>Performance</span>
+        <span>Hospitality</span>
+        <span>Community</span>
       </div>
       <div className="gallery-grid">
         {gallery.map((item, index) => (
@@ -505,50 +540,6 @@ function GalleryView() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
-  )
-}
-
-function TicketsView() {
-  return (
-    <section className="page-pad">
-      <div className="page-hero ticket-hero">
-        <p className="bronze-line">WHITE LIST ACCESS</p>
-        <h1>Tickets</h1>
-        <p>Frontend-only reservation cards for the luxury party concept. No backend or payment flow is attached.</p>
-      </div>
-      <div className="ticket-stack">
-        {['Majlis Entry', 'VIP Carpet Lounge', 'Royal Table'].map((tier, index) => (
-          <article className="ticket-card" key={tier}>
-            <div>
-              <small>Tier 0{index + 1}</small>
-              <h2>{tier}</h2>
-              <p>{index === 0 ? 'Entry, welcome tea, and dance floor.' : index === 1 ? 'Premium seating, bottle service, and gallery access.' : 'Private table, concierge arrival, and artist meet.'}</p>
-            </div>
-            <strong>{['$150', '$290', '$620'][index]}</strong>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function ProfileView() {
-  return (
-    <section className="page-pad">
-      <div className="profile-card">
-        <div className="profile-mark">
-          <Crown size={34} />
-        </div>
-        <p className="bronze-line">GUEST PROFILE</p>
-        <h1>White List Member</h1>
-        <p>Saved events, invitation status, attire notes, and VIP preferences can live here when the backend is added.</p>
-        <div className="profile-stats">
-          <span><strong>04</strong> Parties</span>
-          <span><strong>VIP</strong> Status</span>
-          <span><strong>12</strong> Gallery Saves</span>
-        </div>
-      </div>
     </section>
   )
 }
@@ -600,8 +591,8 @@ function EventCard({ event, compact = false }: { event: (typeof events)[number];
           <span>{event.tag}</span>
           <span>{event.price}</span>
         </div>
-        <Link className="event-action" href="/tickets" aria-label={`${compact ? 'View details for' : 'Get notified for'} ${event.title}`}>
-          {compact ? 'View details' : 'Get Notified for September'}
+        <Link className="event-action" href={compact ? '/events' : '/gallery'} aria-label={`${compact ? 'View details for' : 'View gallery for'} ${event.title}`}>
+          {compact ? 'View details' : 'See the Atmosphere'}
           <ChevronRight size={14} aria-hidden="true" />
         </Link>
       </div>

@@ -1,5 +1,5 @@
-import BedouinExperience from '@/components/BedouinExperience'
+import { redirect } from 'next/navigation'
 
 export default function TicketsPage() {
-  return <BedouinExperience view="tickets" />
+  redirect('/')
 }
